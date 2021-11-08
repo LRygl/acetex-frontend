@@ -67,3 +67,11 @@ p {
   display: flex;
   width: 100%;
 }
+
+.primary-accent{
+  background-color: var(--main-accent-color);
+}
+
+.secondary-accent{
+  background-color: var(--secondary-accent-color);
+}

@@ -15,4 +15,13 @@ export class NotificationService {
   public notify( type: NotificationType, message: string ){
     this.notifier.notify(type,message);
   }
+
+
+  public sendSuccessNotification(notificationType: NotificationType, message: string) {
+    if (message) {
+      this.notify(notificationType,message);
+    } else {
+      this.notify(notificationType,'AN ERROR OCCURED');
+    }
+  }
 }
