@@ -1,1 +1,51 @@
-<p>register works!</p>
+<div class="container" style="padding-top: 25vh;">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card-group mb-0">
+        <div class="card p-4">
+          <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
+            <div class="card-body">
+              <h1>Login</h1>
+              <p class="text-muted">Sign In to your account</p>
+
+              <div class="input-group mb-3">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input name="firstName" type="text" class="form-control" placeholder="firstName" ngModel #firstNameInput="ngModel" required>
+                <span class="help-block" style="color: #dc261b;" *ngIf="firstNameInput.invalid && firstNameInput.touched">Please enter username</span>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input name="lastName" type="text" class="form-control" placeholder="lastName" ngModel #lastName="ngModel" required>
+                <span class="help-block" style="color: #dc261b;" *ngIf="lastName.invalid && lastName.touched">Please enter username</span>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input name="username" type="text" class="form-control" placeholder="username" ngModel #username="ngModel" required>
+                <span class="help-block" style="color: #dc261b;" *ngIf="username.invalid && username.touched">Please enter username</span>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input name="email" type="text" class="form-control" placeholder="username" ngModel #email="ngModel" required>
+                <span class="help-block" style="color: #dc261b;" *ngIf="email.invalid && email.touched">Please enter username</span>
+              </div>
+
+
+              <div class="row">
+                <div class="col-6">
+                  <button [disabled]="registerForm.invalid || showLoading"  type="submit" name="button" class="btn btn-primary px-4">
+                    <i *ngIf="showLoading" class="fas fa-spinner fa-spin">&nbsp;&nbsp;</i>
+                    <span *ngIf="showLoading">Loading</span>
+                    <span *ngIf="!showLoading">Register</span>
+                  </button>
+                </div>
+                <div class="col-6 text-right">
+                  <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subsciptions: Subscription[] = [];
 
   constructor(
-    private router: Router, 
-    private authenticationService: AuthenticationService, 
+    private router: Router,
+    private authenticationService: AuthenticationService,
     private notificationService: NotificationService ) { }
 
   ngOnInit(): void {
@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.showLoading = false;
         },
         (httpErrorResponse: HttpErrorResponse) => {
-          console.log(httpErrorResponse);
           this.sendErrorNotification(NotificationType.ERROR,httpErrorResponse.error.message );
           this.showLoading = false;
         }

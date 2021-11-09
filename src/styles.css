@@ -4,6 +4,38 @@
 @import '~angular-notifier/styles';
 
 :root{
-    --main-accent-color: #dc261b;
-    --secondary-accent-color: #af1e16;
+    --main-accent-color: #DC261B;
+    --secondary-accent-color: #c2453e;
+}
+
+
+td {
+  cursor: pointer;
+}
+
+.move-right{
+  position: absolute;
+  right: 0;
+}
+.move-left{
+  position: absolute;
+  left: 0;
+}
+.btn-file{
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file]{
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  opacity: 0;
+  outline: none;
+  background-color: white;
+  cursor: inherit;
+  display: block;
 }
