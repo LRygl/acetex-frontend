@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { User } from 'src/app/model/user';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -22,10 +24,19 @@ export class UserComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private notificationService: NotificationService) { }
+  constructor(
+    private userService: UserService,
+    private notificationService: NotificationService,
+    private authenticationService: AuthenticationService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
-    this.getUsers(true);
+    if (this.authenticationService.isLoggedIn()) {
+      this.getUsers(true);
+    } else {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   public changeTitle(title:string):void{

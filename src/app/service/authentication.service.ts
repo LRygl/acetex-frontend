@@ -34,6 +34,7 @@ export class AuthenticationService {
 
   public saveToken(token: string): void{
     this.token = token;
+    console.log(token);
     localStorage.setItem('token', token);
   }
 
@@ -47,7 +48,8 @@ export class AuthenticationService {
 
 
   public loadToken(): void {
-    this.token = localStorage.getItem('token') || '';
+    this.token = localStorage.getItem('token') || null;
+
   }
 
   public getToken(): string {
@@ -56,6 +58,7 @@ export class AuthenticationService {
 
   public isLoggedIn(): boolean {
     this.loadToken();
+    console.log(this.loadToken())
     if (this.token != null && this.token !== ''){
       if (this.jwtHelper.decodeToken(this.token).sub != null || ''){
         if (!this.jwtHelper.isTokenExpired(this.token)){
