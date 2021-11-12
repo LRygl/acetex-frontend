@@ -20,7 +20,8 @@ export class UserComponent implements OnInit {
 
   public titleAction$ = this.titleSubject.asObservable();
   public users: User[];
-  public refresing: boolean;
+  public refreshing: boolean;
+  public selectedUser: User;
 
 
 
@@ -44,25 +45,33 @@ export class UserComponent implements OnInit {
   }
 
   public getUsers(showNotification: boolean): void {
-    this.refresing = true;
+    this.refreshing = true;
     this.subsciptions.push(
       this.userService.getUsers().subscribe(
         (response: User[]) => {
           this.userService.addUsersToLocalCache(response);
           this.users = response;
-          this.refresing = false;
+          this.refreshing = false;
           if (showNotification) {
-            this.notificationService.sendSuccessNotification(NotificationType.SUCCESS,`${response.length} users loaded sucessfully.`);
+            this.notificationService.sendSuccessNotification(`${response.length} users loaded sucessfully.`);
           }
         },
         (errorResponse: HttpErrorResponse) => {
-          this.notificationService.sendSuccessNotification(NotificationType.ERROR,'ERROR');
-          this.refresing = false;
+          this.notificationService.sendErrorNotification('ERROR');
+          this.refreshing = false;
         }
       )
     );
   }
 
+  public onSelectUser(selectedUser: User): void {
+    this.selectedUser = selectedUser;
+    document.getElementById('openUserInfo').click();
+  }
 
+public logOut(): void {
+  this.authenticationService.logOut();
+  this.router.navigateByUrl('/login');
 
+}
 }
