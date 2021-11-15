@@ -11,14 +11,24 @@
   </div>
 </div>
 
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark breadcrumb">
   <a class="navbar-brand m-lg-2" href="#">Navbar</a>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="nav nav-pills">
-      <a href="#users" class="nav-item nav-link active m-md-2" (click)="changeTitle('Users')" data-toggle="tab">
+      <!--
+      <a href="#users" class="nav-item nav-link active m-md-2 " (click)="changeTitle('Users')" data-toggle="tab">
         <i class="fa fa-users"></i>
         Users
       </a>
+
+      -->
+
+      <button href="#users" type="button" class="btn btn-primary" (click)="changeTitle('Users')" data-toggle="tab">
+        <i class="fa fa-users"></i>
+        Users <span class="badge bg-secondary">{{users?.length}}</span>
+      </button>
       <a href="#reset-password" class="nav-item nav-link m-md-2" (click)="changeTitle('Settings')" data-toggle="tab">
         <i class="fa fa-cogs"></i>
         Settings
@@ -27,7 +37,7 @@
         Welcome,
         <i class="fa fa-user"></i>
       </a>
-      <a (click)="logOut()" href="">LOG OUT</a>
+      <a class="nav-item nav-link move-right m-md-2" (click)="logOut()" href="">LOG OUT</a>
     </div>
   </div>
 </nav>
@@ -75,8 +85,8 @@
           <td (click)="onSelectUser(appUser)">{{appUser.username}}</td>
           <td (click)="onSelectUser(appUser)">{{appUser.email}}</td>
           <td (click)="onSelectUser(appUser)">
-            <span [hidden]="!appUser?.active" class="badge badge-success">Active</span>
-            <span [hidden]="appUser?.active" class="badge badge-danger">Inactive</span>
+            <span [hidden]="!appUser?.active" class="badge rounded-pill bg-success">Active</span>
+            <span [hidden]="appUser?.active" class="badge rounded-pill bg-danger">Inactive</span>
           </td>
           <td class="">
             <div class="btn-group btn-group-sm">
